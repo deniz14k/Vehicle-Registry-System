@@ -1,8 +1,11 @@
 package isp.lab6.exercise2;
+import java.util.HashSet;
 
 
 public class CarInfo {
 
+
+    HashSet<CarInfo> registry=new HashSet<CarInfo>();
     private int vin;
     private String licensePlate;
     private String make;
