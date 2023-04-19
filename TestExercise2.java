@@ -47,7 +47,7 @@ public class TestExercise2 {
         vehicles.addVehicleWithParameters(1,"MS21DNZ","BMW","320d",2013,registry);
         vehicles.addVehicleWithParameters(2,"CJ33LLL","FORD","TRANSIT",2016,registry);
         boolean expected=true;
-        boolean actual=vehicles.checkVehicleWithParameters(1,registry,found);
+        boolean actual=vehicles.checkVehicleWithParameters(1,registry);
         assertEquals(expected,actual);
 
     }
