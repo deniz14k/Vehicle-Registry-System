@@ -31,14 +31,9 @@ public class Registry {
         int year= read.nextInt();
         read.nextLine();
         CarInfo vehicle=new CarInfo(vin,LicensePlate, make, model , year);
-        for(CarInfo v: registry){
-
-            if(vin==v.getVin()) {
-                System.out.println("Unable to add vehicle because this VIN allready exists in our registry !");
-                rejected=true;
-                break;
-
-            }
+        if (registry.contains(vehicle)) {
+            System.out.println("Unable to add vehicle because this VIN already exists in our registry!");
+            rejected = true;
         }
         if(!rejected) {
 
@@ -53,14 +48,9 @@ public class Registry {
 
         boolean rejected=false;
         CarInfo vehicle=new CarInfo(vin,LicensePlate, make, model , year);
-        for(CarInfo v: registry){
-
-            if(vin==v.getVin()) {
-                System.out.println("Unable to add vehicle because this VIN allready exists in our registry !");
-                rejected=true;
-                break;
-
-            }
+        if (registry.contains(vehicle)) {
+            System.out.println("Unable to add vehicle because this VIN already exists in our registry!");
+            rejected = true;
         }
         if(!rejected) {
 
@@ -73,63 +63,44 @@ public class Registry {
 
     public void removeVehicle(){
 
-        boolean removed=false;
-        System.out.println("Enter the VIN of the car to delete it : ");
-        int vinToDelete=read.nextInt();
-        for(CarInfo r : registry){
-            if(r.getVin()==vinToDelete) {
-                registry.remove(r);
-                System.out.println("Car succesfully removed ! ");
-                removed=true;
-                break;
-            }
-        }
-        if(!removed) System.out.println("Car not found in the registry! ");
+        System.out.println("Enter the VIN to delete : ");
+        boolean removed = registry.remove(new CarInfo(read.nextInt(), null, null, null, 0));
 
+        if (removed) {
+            System.out.println("Car succesfully removed ! ");
+        } else {
+            System.out.println("Car not found in the registry! ");
+        }
     }
+
 
     public void removeVehicleWithParameters(int vinToDelete,HashSet<CarInfo>registry){
 
-        boolean removed=false;
-        for(CarInfo r : registry){
-            if(r.getVin()==vinToDelete) {
-                registry.remove(r);
-                System.out.println("Car succesfully removed ! ");
-                removed=true;
-                break;
-            }
-        }
-        if(!removed) System.out.println("Car not found in the registry! ");
+        boolean removed = registry.remove(new CarInfo(vinToDelete, null, null, null, 0));
 
+        if (removed) {
+            System.out.println("Car succesfully removed ! ");
+        } else {
+            System.out.println("Car not found in the registry! ");
+        }
     }
+
 
     public void checkVehicle(){
 
-        boolean found=false;
         System.out.println("Enter the VIN of the car to check if it is in the registry : ");
         int vinToSearch=read.nextInt();
-        for(CarInfo r : registry){
-            if(r.getVin()==vinToSearch) {
-                System.out.println("Car found in the registry ! ");
-                found=true;
-                break;
-            }
-        }
+        boolean found= registry.contains(new CarInfo(vinToSearch,null,null,null,0));
         if(!found) System.out.println("Car not found in the registry! ");
+        else System.out.println("Car found ! ");
 
 
     }
-    public boolean checkVehicleWithParameters(int vinToSearch, HashSet<CarInfo> registry,boolean found){
+    public boolean checkVehicleWithParameters(int vinToSearch, HashSet<CarInfo> registry){
 
-        for(CarInfo r : registry){
-            if(r.getVin()==vinToSearch) {
-                System.out.println("Car found in the registry ! ");
-                found=true;
-                break;
-            }
-        }
+        boolean found= registry.contains(new CarInfo(vinToSearch,null,null,null,0));
         if(!found) System.out.println("Car not found in the registry! ");
-
+        else System.out.println("Car found ! ");
             return found;
     }
 
