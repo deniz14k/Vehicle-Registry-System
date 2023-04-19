@@ -17,19 +17,15 @@ public class Registry {
 
     public void addVehicle(int vin, String LicensePlate, String make, String model, int year,HashSet<CarInfo> registry){
 
-        boolean rejected=false;
+        
         CarInfo vehicle=new CarInfo(vin,LicensePlate, make, model , year);
         if (registry.contains(vehicle)) {
-            System.out.println("Unable to add vehicle because this VIN already exists in our registry!");
-            rejected = true;
-        }
-        if(!rejected) {
+            registry.remove(vehicle);
+        }        
 
-            registry.add(vehicle);
-            System.out.println("Vehicle added ! ");
-            System.out.println(vehicle.toString());
-        }
-
+        registry.add(vehicle);
+        System.out.println("Vehicle added ! ");
+        System.out.println(vehicle.toString());
     }
 
 
