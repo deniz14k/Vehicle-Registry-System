@@ -1,6 +1,6 @@
 package isp.lab6.exercise2;
 import java.util.HashSet;
-
+import java.util.Objects;
 
 public class CarInfo {
 
@@ -60,6 +60,19 @@ public class CarInfo {
         this.year = year;
     }
 
+    @Override
+    public boolean equals(Object obj){
+
+        if(obj==this) return true;
+        if(!(obj instanceof CarInfo)) return false;
+        CarInfo other=(CarInfo) obj;
+        return this.vin==other.vin;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vin);
+    }
     public String toString(){return this.make + "  " + this.model + "  "  + this.year + "  " + this.licensePlate + "  "  + this.vin;}
 
 
