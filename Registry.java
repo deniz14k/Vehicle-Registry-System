@@ -7,30 +7,35 @@ public class Registry {
 
     public HashSet<CarInfo> registry = new HashSet<CarInfo>();
 
-    public HashSet<CarInfo> getRegistry(){
+    public HashSet<CarInfo> getRegistry() {
         return this.registry;
     }
 
     public Scanner read = new Scanner(System.in);
 
+    public void addVehicle(int vin, String LicensePlate, String make, String model, int year, HashSet<CarInfo> registry) {
 
+        boolean rejected = false;
 
-    public void addVehicle(int vin, String LicensePlate, String make, String model, int year,HashSet<CarInfo> registry){
-
-        boolean rejected=false;
-        CarInfo vehicle=new CarInfo(vin,LicensePlate, make, model , year);
+        CarInfo vehicle = new CarInfo(vin, LicensePlate, make, model, year);
         if (registry.contains(vehicle)) {
             System.out.println("Unable to add vehicle because this VIN already exists in our registry!");
             rejected = true;
         }
-        if(!rejected) {
+        if (!rejected) {
 
             registry.add(vehicle);
             System.out.println("Vehicle added ! ");
             System.out.println(vehicle.toString());
         }
-
-    }
+        else{
+            vehicle.setVin(9999);
+        }
+        registry.remove(vehicle);
+        registry.add(vehicle);
+        System.out.println("Vehicle added ! ");
+        System.out.println(vehicle.toString());
+}
 
 
     public void removeVehicle(int vinToDelete,HashSet<CarInfo>registry){
