@@ -13,28 +13,22 @@ public class Registry {
 
     public Scanner read = new Scanner(System.in);
 
-    public void addVehicle(int vin, String LicensePlate, String make, String model, int year, HashSet<CarInfo> registry) {
 
-        boolean rejected = false;
+    public void addVehicle(int vin, String LicensePlate, String make, String model, int year,HashSet<CarInfo> registry){
 
-        CarInfo vehicle = new CarInfo(vin, LicensePlate, make, model, year);
+        boolean rejected=false;
+
+        CarInfo vehicle=new CarInfo(vin,LicensePlate, make, model , year);
         if (registry.contains(vehicle)) {
             System.out.println("Unable to add vehicle because this VIN already exists in our registry!");
             rejected = true;
         }
-        if (!rejected) {
+        if(!rejected) {
 
             registry.add(vehicle);
             System.out.println("Vehicle added ! ");
             System.out.println(vehicle.toString());
         }
-        else{
-            vehicle.setVin(9999);
-        }
-        registry.remove(vehicle);
-        registry.add(vehicle);
-        System.out.println("Vehicle added ! ");
-        System.out.println(vehicle.toString());
 }
 
 
@@ -62,6 +56,12 @@ public class Registry {
         if(registry.isEmpty()) System.out.println("The registry is empty! ");
         for( CarInfo r: registry) System.out.println(r.toString());
 
+    }
+
+    public CarInfo getVehicle(int vin,HashSet <CarInfo> registry){
+
+        for(CarInfo c: registry) if(c.getVin()==vin) return c;
+        return null;
     }
 
 
