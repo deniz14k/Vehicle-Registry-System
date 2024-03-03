@@ -1,0 +1,7 @@
+I implemented a Registry for Vehicles, using a HashSet which is useful because every vehicle should have different VIN( Vehicle Identification Number). 
+The operations I developed are : 
+  1) Add a vehicle
+  2) Remove a vehicle
+  3) Check a vehicle
+  5) Display all vehicles
+I tested these methods in different situations and the system is working properly. 
